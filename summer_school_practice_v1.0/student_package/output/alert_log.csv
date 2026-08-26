@@ -1,0 +1,6 @@
+﻿alert_time,target_id,alert_type,severity,field,description
+1710000120,780def,POSITION_MISSING,HIGH,lat/lon,lat or lon is missing
+1710000120,000001,DATA_DELAYED,MEDIUM,timestamp,batch_time - timestamp = 120 seconds > 60
+1710000120,780bbb,HEADING_OUT_OF_RANGE,MEDIUM,heading,"heading must satisfy 0 <= heading < 360, got 360.0"
+1710000120,780aaa,DUPLICATE_RECORD,MEDIUM,"target_id,timestamp",duplicate target_id+timestamp key: 780aaa+1710000100
+1710000120,780aaa,DUPLICATE_RECORD,MEDIUM,"target_id,timestamp",duplicate target_id+timestamp key: 780aaa+1710000100
