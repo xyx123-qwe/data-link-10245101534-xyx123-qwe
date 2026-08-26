@@ -1,0 +1,3 @@
+﻿record_no,target_id,stage,field,problem_type,value,description
+4,780bad,parse,,ENCODING_ERROR,,timestamp missing: both time_position and last_contact are None
+5,780bee,parse,,ENCODING_ERROR,,"true_track out of range: expected 0.0 <= value < 360.0, got 360.0"
