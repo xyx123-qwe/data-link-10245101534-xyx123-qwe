@@ -1,0 +1,9 @@
+﻿source_format,input_field,unified_field,verified_rule,verified,evidence
+OpenSky,target_id,track_id,六位目标标识转为小写字符串，保留前导0,True,M3 current_situation.csv target_id 已由 M2 解码恢复为六位十六进制字符串
+OpenSky,latest_time,timestamp,latest_time 为正整数 Unix 秒时直接映射,True,M3 当前态势使用每个 target_id 的最新 timestamp
+TeachingLink,latitude_code + validity_flags.bit0,position.lat,bit0 有效时按 code/(2^22-1)*180-90 恢复纬度；无效时为 null,True,TeachingLink 规范规定 bit0 表示纬度有效，预生成候选把 lat/lon 层次写反，已修正
+TeachingLink,longitude_code + validity_flags.bit1,position.lon,bit1 有效时按 code/(2^22-1)*360-180 恢复经度；无效时为 null,True,TeachingLink 规范规定 bit1 表示经度有效，预生成候选把 lat/lon 层次写反，已修正
+TeachingLink,altitude_code + validity_flags.bit2,position.alt,bit2 有效时 altitude_code-1000 得到米；无效时为 null,True,TeachingLink 高度使用 1m 分辨率和 1000m 物理偏置，预生成候选遗漏偏置，已修正
+TeachingLink,callsign + validity_flags.bit6,identity.callsign,bit6 有效且呼号非空时映射，否则为 null,True,TeachingLink 规范规定 callsign 是可空字段，由 validity_flags.bit6 表达
+TeachingLink,status_flags.bit2,quality.time_source,bit2 为 1 表示 timestamp_fallback，对应 last_contact；否则为 position_time,True,status_flags.bit2 的语义是 timestamp_fallback，不是 time_valid
+TeachingLink,message_valid,quality.message_valid,仅表示帧通过课程格式和校验检查，不扩大为业务可信,True,TeachingLink 规范明确 message_valid 只代表格式与校验通过
